@@ -1,11 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { StatusBar, StyleSheet, SafeAreaView, View } from 'react-native';
+import * as ScreenOrientation from 'expo-screen-orientation'
 
 import Display from './Display'
 import Buttons from './Buttons'
 import colors from './colors';
 
 export default class App extends Component {
+    
 
     state = {
         display: '',
@@ -30,8 +32,8 @@ export default class App extends Component {
             let result = this.state.result
             try {
 
-                let fixedOperation = display.split('×').join('*')
-                fixedOperation = fixedOperation.split('÷').join('/')
+                let fixedOperation = display.split('*').join('*')
+                fixedOperation = fixedOperation.split('/').join('/')
                 fixedOperation = fixedOperation.split(',').join('.')
 
                 result = new String(eval(fixedOperation)).toString()
@@ -43,7 +45,6 @@ export default class App extends Component {
             })
         }
     }
-
     render() {
         return (
             <View style={styles.container}>
